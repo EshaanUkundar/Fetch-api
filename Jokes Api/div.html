@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="div.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Jokes</h1>
+        <div class="incont">
+            <P id="jok"></P>
+        </br>
+        <div class="btn">
+            <button onclick="jokes()" title="Click to get new joke">NEXT</button>
+        </div>
+    </div>
+</body>
+<script>
+    const jokes = async () => {
+        try {
+            const sethheader = {
+                headers: {
+                    Accept: "application/json"
+                }
+            }
+            const api = await fetch("https://icanhazdadjoke.com/", sethheader);
+            const data = await api.json();
+            document.getElementById("jok").innerHTML = data.joke;
+        }
+        catch (err) {
+            console.log(err);
+        }
+
+    }
+    jokes();
+</script>
+
+</html>
